@@ -80,6 +80,16 @@ h1 {
 .absent {
     --background-color: rgb(71, 71, 71);
 }
+.correctKey {
+    background-color: green;
+
+}
+.presentKey {
+    background-color: yellow;
+}
+.absentKey {
+    background-color: rgb(71, 71, 71);
+}
 .keyboard {
     width: 500px;
     height: 200px;

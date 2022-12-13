@@ -4,6 +4,8 @@ let grid = [];
 let currentRow = 0;
 let currentCol = 0;
 let gameOver = false;
+let isRandomPlayEnabled = localStorage.getItem('isRandomPlay');
+console.log(isRandomPlayEnabled);
 tileSizes = ['60px', '50px','45px']
 
 //let word = WORDS[Math.floor(Math.random() * WORDS.length)];
@@ -21,12 +23,16 @@ async function loadWords(){
     let rand = Math.abs(Math.sin(RandomSeed++));
     //onsole.log("index : " + Math.floor(rand * WORDS.length));
     //word = WORDS[0].toUpperCase();
-    
+    if (isRandomPlayEnabled == "yes"){
+        rand = Math.random();
+    }
     word = WORDS[Math.floor(rand * WORDS.length)]; 
+
     word = word.toUpperCase();
     
+    
 
-    //console.log(word);
+    console.log(word);
     width = word.length;
     return WORDS;
 
@@ -183,8 +189,8 @@ function submitGuess(){
         flipTile(currentTile,c);
         if (letter == word[c]){
             currentTile.classList.add("correct");
-            document.getElementById("" + letter.toLowerCase()).classList.remove("present");
-            document.getElementById("" + letter.toLowerCase()).classList.add("correct");
+            document.getElementById("" + letter.toLowerCase()).classList.remove("presentKey");
+            document.getElementById("" + letter.toLowerCase()).classList.add("correctKey");
             correct +=1;
             letterCount[letter] -=1;
             
@@ -209,13 +215,14 @@ function submitGuess(){
         
             if (word.includes(letter) && letterCount[letter] > 0){
                 currentTile.classList.add("present");
-                document.getElementById("" + letter.toLowerCase()).classList.add("present");
+                document.getElementById("" + letter.toLowerCase()).classList.remove("absentKey");
+                document.getElementById("" + letter.toLowerCase()).classList.add("presentKey");
                 letterCount[letter] -=1;
                 
             }
             else {
                 currentTile.classList.add("absent");
-                document.getElementById("" + letter.toLowerCase()).classList.add("absent");
+                document.getElementById("" + letter.toLowerCase()).classList.add("absentKey");
             }
         }
         
