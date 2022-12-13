@@ -147,7 +147,10 @@ function keyPressed(key){
     //add functionality to onscreen
     //console.log(key);
     key ="Key"+ key.toUpperCase();
-    if (key == "KeyENTER"){
+    if (key == 'KeyBACKSPACE'){
+        document.dispatchEvent(new KeyboardEvent("keyup",{'code' : "Backspace"},));
+    }
+    else if (key == "KeyENTER"){
         document.dispatchEvent(new KeyboardEvent("keyup",{'code' : "Enter"},));
 
     }
