@@ -46,8 +46,8 @@ async function loadValidWords(){
 window.onload = function() {
 
 
-
-    setup();
+    setTimeout(setup, 200);
+    //setup();
 }
 
 function setup() {
@@ -215,7 +215,7 @@ function submitGuess(){
         
             if (word.includes(letter) && letterCount[letter] > 0){
                 currentTile.classList.add("present");
-                document.getElementById("" + letter.toLowerCase()).classList.remove("absentKey");
+                document.getElementById("" + letter.toLowerCase()).classList.remove("presentKey");
                 document.getElementById("" + letter.toLowerCase()).classList.add("presentKey");
                 letterCount[letter] -=1;
                 
